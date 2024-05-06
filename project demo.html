@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Ordini</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            background-color: #fff; 
+        }
+        
+        section {
+            margin: 20px;
+            width: 80%;
+            background-color: #fff; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            margin-top: 20px;
+            width: 80%;
+            text-align: center; 
+            margin-left: auto; 
+            margin-right: 20px; 
+        }
+        
+        .order {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        .incomplete {
+            background-color: #ffcccc;
+        }
+        
+        
+        .rectangle-container {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center; 
+            margin-top: 20px;
+            margin-right: 20px; 
+            margin-left: 20px; 
+        }
+        
+        .rectangle {
+            width: 300px; 
+            height: 75px; 
+            text-align: center;
+            line-height: 1.5; 
+            font-size: 10px; 
+            font-weight: bold;
+            border-radius: 10px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            position: relative; 
+            justify-content: flex-end; 
+        }
+        
+        .blue-rectangle {
+            position: relative; 
+            overflow: hidden; 
+            background-color: #3ade66; 
+            margin-right: 20px;
+        }
+        
+        .green-rectangle { 
+            position: relative; 
+            overflow: hidden; 
+            background-color: #3ab8de; 
+            margin-right: 20px;
+        }
+    
+        .grey-rectangle {
+            background-color: #ebebeb; 
+            position: absolute; 
+            top: 10%; 
+            left: 10%; 
+            width: 80%; 
+            height: 80%; /
+            border-radius: 10px; 
+            padding: 10px; 
+            box-sizing: border-box; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border: none; 
+        }
+        
+        .grey-rectangle-item {
+            flex: 1; 
+            text-align: center; 
+        }
+
+        .rectangle-value {
+            font-size: 18px; 
+            font-weight: bold; 
+        }
+        
+        
+        @keyframes countUp {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .count-up {
+            animation: countUp 1s ease-in-out forwards;
+        }
+        
+        @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+.fa-2x {
+font-size: 2em;
+}
+.fa {
+position: relative;
+display: table-cell;
+width: 60px;
+height: 36px;
+text-align: center;
+vertical-align: middle;
+font-size:20px;
+}
+
+
+.main-menu:hover,nav.main-menu.expanded {
+width:250px;
+overflow:visible;
+}
+
+.main-menu {
+background:#212121;
+border-right:1px solid #e5e5e5;
+position:absolute;
+top:0;
+bottom:0;
+height:100%;
+left:0;
+width:60px;
+overflow:hidden;
+-webkit-transition:width .05s linear;
+transition:width .05s linear;
+-webkit-transform:translateZ(0) scale(1,1);
+z-index:1000;
+}
+
+.main-menu>ul {
+margin:7px 0;
+}
+
+.main-menu li {
+position:relative;
+display:block;
+width:250px;
+}
+
+.main-menu li>a {
+position:relative;
+display:table;
+border-collapse:collapse;
+border-spacing:0;
+color:#999;
+ font-family: arial;
+font-size: 14px;
+text-decoration:none;
+-webkit-transform:translateZ(0) scale(1,1);
+-webkit-transition:all .1s linear;
+transition:all .1s linear;
+  
+}
+
+.main-menu .nav-icon {
+position:relative;
+display:table-cell;
+width:60px;
+height:36px;
+text-align:center;
+vertical-align:middle;
+font-size:18px;
+}
+
+.main-menu .nav-text {
+position:relative;
+display:table-cell;
+vertical-align:middle;
+width:190px;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.main-menu>ul.logout {
+position:absolute;
+left:0;
+bottom:0;
+}
+
+.no-touch .scrollable.hover {
+overflow-y:hidden;
+}
+
+.no-touch .scrollable.hover:hover {
+overflow-y:auto;
+overflow:visible;
+}
+
+a:hover,a:focus {
+text-decoration:none;
+}
+
+nav {
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+-o-user-select:none;
+user-select:none;
+}
+
+nav ul,nav li {
+outline:0;
+margin:0;
+padding:0;
+}
+.main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+color:#fff;
+background-color:#000000;
+}
+.area {
+float: left;
+background: #e2e2e2;
+width: 100%;
+height: 100%;
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+}
+
+        
+        
+
+        
+        .orders-list {
+            width: 80%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .order-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+        .orders-section {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: auto;
+}
+
+#ordersTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#ordersTable th, #ordersTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+#ordersTable th {
+  background-color: #ffffff;
+  color: rgb(10, 10, 10);
+  cursor: pointer;
+}
+
+#ordersTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.status-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.status-button.new {
+  background-color: #007bff;
+}
+
+.status-button.cancelled {
+  background-color: #dc3545;
+}
+
+.status-button.in-progress {
+  background-color: #ffc107;
+}
+
+.status-button.completed {
+  background-color: #28a745;
+}
+
+
+.search-bar {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 7px;
+  width: 80%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="area"></div><nav class="main-menu">
+        <ul>
+            <li>
+                <a href="https://jbfarrow.com">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
+                       Dashboard
+                    </span>
+                </a>
+              
+            </li>
+            <li class="has-subnav">
+                <a href="#">
+                    <i class="fa fa-globe fa-2x"></i>
+                    <span class="nav-text">
+                        Products
+                    </span>
+                </a>
+                
+            </li>
+            <li class="has-subnav">
+                <a href="#">
+                   <i class="fa fa-comments fa-2x"></i>
+                    <span class="nav-text">
+                        Orders
+                    </span>
+                </a>
+                
+            </li>
+            <li class="has-subnav">
+                <a href="#">
+                   <i class="fa fa-camera-retro fa-2x"></i>
+                    <span class="nav-text">
+                        Sales
+                    </span>
+                </a>
+               
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-film fa-2x"></i>
+                    <span class="nav-text">
+                        Reviews
+                    </span>
+                </a>
+            </li>
+          
+                  
+        </ul>
+
+        <ul class="logout">
+            <li>
+               <a href="#">
+                     <i class="fa fa-power-off fa-2x"></i>
+                    <span class="nav-text">
+                        Logout
+                    </span>
+                </a>
+            </li>  
+        </ul>
+        
+    </nav>
+
+<div class="rectangle-container">
+    <div class="rectangle green-rectangle">
+        <div class="grey-rectangle">
+            <div class="grey-rectangle-item count-up">
+                <div class="rectangle-value">2k</div>
+                <div>All Orders</div>
+            </div>
+            <div class="grey-rectangle-item count-up">
+                <div class="rectangle-value">70</div>
+                <div>Pending</div>
+            </div>
+            <div class="grey-rectangle-item count-up">
+                <div class="rectangle-value">120</div>
+                <div>Completed</div>
+            </div>
+            <div class="grey-rectangle-item count-up">
+                <div class="rectangle-value">60</div>
+                <div>Progress</div>
+            </div>
+        </div>
+    </div>
+    <div class="rectangle blue-rectangle">
+        <div class="grey-rectangle">
+            <div class="grey-rectangle-item count-up">
+                <div class="rectangle-value">160</div>
+                <div>Abanded</div>
+            </div>
+            <div class="grey-rectangle-item count-up">
+                <div class="rectangle-value">222</div>
+                <div>Returned</div>
+            </div>
+            <div class="grey-rectangle-item count-up">
+                <div class="rectangle-value">78</div>
+                <div>Canceled</div>
+            </div>
+            <div class="grey-rectangle-item count-up">
+                <div class="rectangle-value">35</div>
+                <div>Rejected</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="search-bar" style="float: left;">
+    <input type="text" class="search-input" placeholder="Search Order ...">
+    <button class="search-button">Search</button>
+</div>
+<button id="downloadCsv" type="button" style="float: right;">Download</button>
+<div class="filters" style="clear: both;">
+    <label for="statusFilter">Filter Orders:</label>
+    <select id="statusFilter">
+        <option value="all">All</option>
+        <option value="new">New</option>
+        <option value="in-progress">In Progress</option>
+        <option value="completed">Completed</option>
+        <option value="cancelled">Cancelled</option>
+    </select>
+</div>
+<div class="orders-section">
+    <table id="ordersTable">
+      <thead>
+        <tr>
+          <th onclick="sortTable(0)">Order ID</th>
+          <th onclick="sortTable(1)">Customer</th>
+          <th onclick="sortTable(2)">Amount</th>
+          <th onclick="sortTable(3)">Payment Method</th>
+          <th onclick="sortTable(4)">Order Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="ordersBody">
+        
+      </tbody>
+    </table>
+  </div>
+  
+  
+  
+
+
+<script>
+    var orders = [
+      { orderID: '#OP99807', customer: 'Tara Moreno', amount: '\$139.99', paymentMethod: 'Credit Card', orderDate: 'Apr 20, 2024', status: 'completed' },
+      
+    ];
+    
+    
+    function populateOrdersTable() {
+      var tbody = document.getElementById('ordersBody');
+      orders.forEach(function(order) {
+        var row = tbody.insertRow();
+        row.insertCell().innerText = order.orderID;
+        row.insertCell().innerText = order.customer;
+        row.insertCell().innerText = order.amount;
+        row.insertCell().innerText = order.paymentMethod;
+        row.insertCell().innerText = order.orderDate;
+        var statusCell = row.insertCell();
+        statusCell.innerHTML = '<button class="status-button ' + order.status + '">' + capitalizeFirstLetter(order.status) + '</button>';
+      });
+    }
+    
+    
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    
+    
+    function sortTable(columnIndex) {
+      
+    }
+    
+    // Call the function to populate the table
+    populateOrdersTable();
+    // Example order data with a function to add random orders
+var orders = [
+  { orderID: '#OP99807', customer: 'Tara Moreno', amount: '\$139.99', paymentMethod: 'Credit Card', orderDate: 'Apr 20, 2024', status: 'completed' },
+  // ... other predefined order objects
+];
+
+// Function to generate a random order
+function generateRandomOrder() {
+  const orderID = '#OP' + Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+  const customers = ['Noah Evans', 'Liam Smith', 'Emma Brown', 'Olivia Wilson', 'Ava Taylor', 'Isabella Scott'];
+  const amounts = ['\$99.99', '\$120.50', '\$150.00', '\$180.75', '\$200.00'];
+  const paymentMethods = ['Credit Card', 'PayPal', 'Debit Card', 'Bitcoin'];
+  const orderDates = ['Apr 21, 2024', 'Apr 22, 2024', 'Apr 23, 2024', 'Apr 24, 2024'];
+  const statuses = ['new', 'cancelled', 'in-progress', 'completed'];
+
+  return {
+    orderID: orderID,
+    customer: customers[Math.floor(Math.random() * customers.length)],
+    amount: amounts[Math.floor(Math.random() * amounts.length)],
+    paymentMethod: paymentMethods[Math.floor(Math.random() * paymentMethods.length)],
+    orderDate: orderDates[Math.floor(Math.random() * orderDates.length)],
+    status: statuses[Math.floor(Math.random() * statuses.length)]
+  };
+}
+
+// Add 5 random orders to the orders array
+for (let i = 0; i < 10; i++) {
+  orders.push(generateRandomOrder());
+}
+
+// Function to populate the orders table
+// ... (rest of the populateOrdersTable function as before)
+
+// Call the function to populate the table with predefined and random orders
+populateOrdersTable();
+
+function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        
+        const greenRectangleItems = document.querySelectorAll('.green-rectangle .count-up .rectangle-value');
+        const blueRectangleItems = document.querySelectorAll('.blue-rectangle .count-up .rectangle-value');
+
+        
+        greenRectangleItems.forEach((item, index) => {
+            animateValue(item, 0, [2000, 70, 120, 60][index], 2000); 
+        });
+
+        blueRectangleItems.forEach((item, index) => {
+            animateValue(item, 0, [160, 222, 78, 35][index], 2000); 
+        });
+        
+document.getElementById("searchInput").addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) { 
+        const searchText = this.value.trim().toLowerCase();
+        const filteredOrders = ordersData.filter(order =>
+            order.id.toString().toLowerCase().includes(searchText) ||
+            order.customerName.toLowerCase().includes(searchText) ||
+            order.date.toLowerCase().includes(searchText) ||
+            order.total.toString().toLowerCase().includes(searchText) ||
+            order.status.toLowerCase().includes(searchText)
+        );
+        renderOrders(filteredOrders);
+    }
+});
+    </script>
+</body>
+</html>
+
+
+
+
